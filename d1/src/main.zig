@@ -43,7 +43,7 @@ fn decodeInput(input: []const u8, method: ?usize) !usize {
             }
             if (pos == 0) stops += 1;
         } else if (method == 0x434C49434B) {
-            std.debug.print("{:3} {c}{:3} => ", .{ pos, dir, @abs(delta) });
+            // std.debug.print("{:3} {c}{:3} => ", .{ pos, dir, @abs(delta) });
             switch (dir) {
                 'L' => pos -= delta,
                 'R' => pos += delta,
@@ -53,11 +53,11 @@ fn decodeInput(input: []const u8, method: ?usize) !usize {
             passes += if (pos < 0 and pos + delta > 0) 1 else 0; // ending negative only counts as a cross if start was positive (not zero)
             passes += if (pos == 0) 1 else 0;
             stops += @abs(passes);
-            std.debug.print("{:4} ({:2}) => ", .{ pos, passes });
+            // std.debug.print("{:4} ({:2}) => ", .{ pos, passes });
 
             // Reset position to positive
             pos = @mod(pos, 100);
-            std.debug.print("{:3}\n", .{pos});
+            // std.debug.print("{:3}\n", .{pos});
         }
     }
 
